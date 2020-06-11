@@ -23,3 +23,7 @@ urlpatterns = [
     path('', RedirectView.as_view(url='/labcoffee/')),
     path('accounts/', include('django.contrib.auth.urls')),
 ]
+
+urlpatterns += [
+    path('labcoffee/', include('labcoffee.urls')),
+]
