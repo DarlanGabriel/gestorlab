@@ -28,7 +28,7 @@ python -m pip install --upgrade pip
 
 Desativar: 
 ```commandline
-desactivate
+deactivate
 ```
 
 ## Criar Projeto Django
@@ -74,6 +74,11 @@ Criar o banco de dados:
 ```commandline
 python manage.py makemigrations
 python manage.py migrate
+```
+
+Criando um super usuário
+```commandline
+python manage.py createsuperuser
 ```
 
 Executar o servidor:
