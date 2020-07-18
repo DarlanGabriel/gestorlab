@@ -8,7 +8,12 @@ class TestViews(TestCase):
     def setUp(self):
         self.client = Client()
         self.list_url = reverse('laboratorio_list')
-        self.detail_url = reverse('laboratorio_detail', args=['labens'])
+        self.detail_url = reverse('laboratorio_detail', args=['labtest'])
+        Laboratorio.objects.create(
+            nome='labtest',
+            sigla='labtest',
+            descricao='fsfs sfsdv egwgw vfss'
+        )
 
     def test_laboratorio_list_GET(self):
         response = self.client.get(self.list_url)
@@ -20,4 +25,4 @@ class TestViews(TestCase):
         response = self.client.get(self.detail_url)
 
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateNotUsed(response, 'laboratorios/laboratorio-list.html')
+        self.assertTemplateUsed(response, 'laboratorios/laboratorio-detail.html')
