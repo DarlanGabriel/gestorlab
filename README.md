@@ -6,11 +6,11 @@ e as apresentações em no laboratório no LabCoffee MeetUp.
 * Cadastro de Laboratórios de Pesquisa;
   * Um laboratório tem um nome, descrição, linhas de pesquisa, um coordenador, 
   um vice-coordenador, membros discentes, docentes e colaboradores externos.
+  * Cadastro de Linhas de Pesquisa
+    * nome, descrição, área do CNPQ;
   * Cadastro dos Membros do Laboratório
     * nome, email, telefone, perfil;
     * perfis: Coordenador, Docente, Discente, Colaborador;
-  * Cadastro de Linhas de Pesquisa
-    * nome, descrição, área do CNPQ;
   * Cadastro de Projetos de Ensino, Pesquisa e Extensão
     * nome, descrição, coordenação, participantes;
   * Cadastro de Artigos Publicados pelos membros do Laboratório
