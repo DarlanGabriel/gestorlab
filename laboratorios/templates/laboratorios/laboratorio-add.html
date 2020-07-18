@@ -1,0 +1,18 @@
+{% extends 'laboratorios/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+  <br><br>
+  <form method="POST">
+    {% csrf_token %}
+    {{ form.as_table }}
+      <br>
+      <br>
+      <button type="submit" class="btn">Start Project</button>
+  </form>
+</div>
+
+<script src="{% static 'js/script.js' %}"></script>
+
+{% endblock %}

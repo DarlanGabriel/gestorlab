@@ -1,0 +1,124 @@
+{% extends 'laboratorios/base.html' %}
+{% block content %}
+
+    <div class="container">
+
+        <section class="section section-stats">
+            <div class="row">
+
+                <div class="col s12 m12 l3">
+                    <div class="card-panel">
+                        <h7 class="bold">Sigla</h7>
+                        <h6 class="bold">{{ laboratorio.sigla }}</h6>
+                    </div>
+                </div>
+
+                <div class="col s12 m6 l9">
+                    <div class="card-panel">
+                        <h7 class="bold">Nome</h7>
+                        <h6 class="bold">{{ laboratorio.nome }}</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 m6 l12">
+                    <div class="card-panel">
+                        <h7 class="bold">Descrição</h7>
+                        <h6 class="bold">{{ laboratorio.descricao }}</h6>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-expenses">
+            <div class="row">
+                <button class="btn waves-effect right modal-trigger" href="#expenseModal">
+                    <i class="material-icons white-text left">add_circle</i>
+                    Add Linha de Pesquisa
+                </button>
+            </div>
+
+            <ul class="z-depth-1">
+
+                {% for linha in linha_pesquisa_list %}
+                    <li>
+                        <div class="card-panel z-depth-0 expense">
+                            <div class="row">
+
+                                <div class="col l3">
+                                    <span class="title">{{ linha.nome }}</span>
+                                </div>
+
+                                <div class="col l5">
+                                    <span class="title">{{ linha.descricao }}</span>
+                                </div>
+
+                                <div class="col l3">
+                                    <span class="title bold">{{ linha.areaCNPQ }}</span>
+                                </div>
+
+                                <a class="close-icon" onclick="deleteExpense(this)" data-id="{{ linha.id }}">
+                                    <i class="material-icons red-text right">close</i>
+                                </a>
+
+                            </div>
+                        </div>
+                    </li>
+                {% endfor %}
+
+            </ul>
+        </section>
+
+    </div>
+
+    <div id="expenseModal" class="modal">
+        <div class="modal-content">
+            <h4>Add Linha de Pesquisa</h4>
+
+            <form method="POST">
+                {% csrf_token %}
+                <label for="title">Nome</label>
+                <input name="title" id="title">
+
+                <label for="amount">areaCNPQ</label>
+                <input name="amount" id="amount">
+
+                <select name="category">
+                    {% for category in category_list %}
+                        <option>{{ category.name }}</option>
+                    {% endfor %}
+                </select>
+
+                <button type="submit" class="btn">Add</button>
+            </form>
+
+        </div>
+    </div>
+
+    <script>
+        var elem = document.querySelector('.modal')
+        var instance = M.Modal.init(elem)
+
+        var elem = document.querySelector('select')
+        var instance = M.FormSelect.init(elem)
+
+
+        function deleteExpense(e) {
+
+            let id = e.dataset.id
+            e.closest('li').remove()
+
+            fetch('', {
+                method: 'DELETE',
+                headers: {
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: JSON.stringify({
+                    'id': id
+                }),
+                credentials: 'same-origin',
+            })
+        }
+    </script>
+
+{% endblock %}

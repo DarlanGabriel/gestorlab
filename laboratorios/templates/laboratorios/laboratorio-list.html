@@ -1,0 +1,38 @@
+{% extends 'laboratorios/base.html' %}
+{% block content %}
+
+<div class="container">
+  {% if laboratorios %}
+  <h1>Laboratórios</h1>
+  <hr>
+  {% endif %}
+  <div class="row">
+    {% for laboratorio in laboratorios %}
+    <div class="col s12 md6 xl4">
+      <div class="card-panel">
+        <h6>{{ laboratorio.sigla }}</h6>
+          <p>{{ laboratorio.nome }}</p>
+        <a href="{% url 'laboratorio_detail' laboratorio.slug %}" class="btn">Visit</a>
+      </div>
+    </div>
+    {% empty %}
+    <div class="noproject-wrapper center">
+      <h3 class="grey-text">Sorry, you don't have any projects, yet.</h3>
+      <a href="{% url 'laboratorio_add' %}" class="btn-large grey">
+        <i class="material-icons white-text left">add_circle</i>
+        <span class="bold">Add Laboratório</span>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+
+  {% if laboratorios %}
+  <a href="{% url 'laboratorio_add' %}" class="btn">
+    <i class="material-icons white-text left">add_circle</i>
+    <span class="bold">Add Laboratório</span>
+  </a>
+  {% endif %}
+
+</div>
+
+{% endblock %}

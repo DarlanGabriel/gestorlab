@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% block title %}<title>GestorLab - Gerenciamento de Laboratórios</title>{% endblock %}
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+{% block sidebar %}
+    <div>
+        {% if user.is_authenticated %}
+            Usuário: {{ user.get_username }} -
+            <a href="{% url 'logout' %}?next={{ request.path }}">Logout</a>
+        {% else %}
+            <a href="{% url 'login' %}?next={{ request.path }}">Login</a>
+        {% endif %}
+    </div>
+{% endblock %}
+{% block content %}<!-- default content text (typically empty) -->{% endblock %}
+</body>
+</html>
