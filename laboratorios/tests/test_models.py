@@ -11,3 +11,5 @@ class TestModels(TestCase):
                            descricao='XXXXX')
 
         self.assertEqual(lab1.nome, 'Laboratório 1', 'T01 - Testa nome.')
+        self.assertEqual(lab1.sigla, 'LAB1', 'T02 - Testa sigla.')
+
