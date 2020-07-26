@@ -63,7 +63,7 @@ deactivate
 ```commandline
 source env/bin/activate
 
-pip install django==3.0.7
+pip install django==3.0.8
 django-admin startproject gestorlab
 ```
 
@@ -112,4 +112,35 @@ Executar o servidor:
 
 ```commandline
 python manage.py runserver
+```
+
+## Testes
+
+Executando os testes de unidade com `test`:
+
+```commandline
+python manage.py test laboratorios --keepdb
+```
+
+### Pytest
+
+As configurações para execução estão no arquivo `pytest.ini`. 
+As dependências necessárias para usar **pytest** no **Django**:
+
+```
+pytest==5.4.3
+pytest-django==3.9.0
+pytest-cov==2.10.0
+```
+
+Executando os testes de unidade:
+
+```commandline
+pytest
+```
+
+### Relatório de Cobertura com Pytest
+
+```commandline
+pytest --cov-branch --cov=. --cov-report xml:coverage.xml
 ```
