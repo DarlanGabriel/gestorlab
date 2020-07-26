@@ -25,7 +25,7 @@ SECRET_KEY = 'ffrjii$8e4bchokfsh*#+w9389865%fp6pkyng$%f_=n@ajqw1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'testserver']
 
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
 LOGIN_REDIRECT_URL = '/'
