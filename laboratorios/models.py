@@ -18,6 +18,9 @@ class Departamento(models.Model):
     centro = models.CharField(max_length=200)
     centro_sigla = models.CharField(max_length=25)
 
+    def get_absolute_url(self):
+        return reverse('depart_detail', kwargs={'pk': self.pk})
+
     def __str__(self):
         return self.nome + ' - ' + self.sigla + '/' + self.centro_sigla
 

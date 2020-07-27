@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import CreateView
+from django.views.generic import CreateView, DetailView
 
 from laboratorios.forms import LaboratorioForm
 from laboratorios.models import Laboratorio, LinhaPesquisa, Departamento
@@ -29,5 +29,10 @@ def laboratorio_detail(request, laboratorio_slug):
 
 class LaboratorioCreateView(CreateView):
     model = Laboratorio
-    form_class = LaboratorioForm
+    fields = ['nome', 'sigla', 'descricao', 'departamento']
     template_name = 'laboratorios/laboratorio-add.html'
+
+
+class DepartamentoDetailView(DetailView):
+    model = Departamento
+    template_name = 'laboratorios/depart/detalhar.html'
