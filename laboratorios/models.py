@@ -55,7 +55,7 @@ class Laboratorio(models.Model):
     sigla = models.CharField(max_length=25, unique=True)
     slug = models.SlugField(max_length=100, unique=True, blank=True)
     descricao = models.TextField()
-    departamento = models.ForeignKey(Departamento, on_delete=models.PROTECT, null=True)
+    departamento = models.ForeignKey(Departamento, on_delete=models.PROTECT, null=True, blank=True)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.sigla)
