@@ -70,3 +70,7 @@ form ul li.category {
 .section-expenses .close-icon:hover {
   cursor: pointer;
 }
+
+.verde-botao {
+  background-color: #1d7d74;
+}
