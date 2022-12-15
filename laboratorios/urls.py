@@ -10,3 +10,10 @@ urlpatterns = [
 
     path('departamentos/<int:pk>/', views.DepartamentoDetailView.as_view(), name='depart_detail'),
 ]
+
+urlpatterns = [
+    path('', LaboratorioListView.as_view(), name='list'),
+    path('create/', LaboratorioCreateView.as_view(), name='create'),
+    path('<int:pk>/update/', LaboratorioUpdateView.as_view(), name='update'),
+    path('<int:pk>/delete/', LaboratorioDeleteView.as_view(), name='delete'),
+]
