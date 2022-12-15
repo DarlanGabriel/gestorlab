@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import CreateView, DetailView, UpdateView
+from django.views.generic import CreateView, DetailView, UpdateView, DeleteView, ListView
 
 from laboratorios.forms import LaboratorioForm
 from laboratorios.models import Laboratorio, LinhaPesquisa, Departamento
@@ -41,6 +41,11 @@ class DepartamentoDetailView(DetailView):
 #    model = Laboratorio
 #    template_name = 'laboratorios/detalhar.html'
 
+class LaboratorioListView(ListView):
+    def get(self, request):
+        laboratorio = Laboratorio.objects.all()
+        return render(request, 'laboratories/index.html', {'laboratories': laboratorio})
+
 class LaboratorioCreateView(CreateView):
     def post(self, request):
         name = request.POST['nome']
@@ -53,10 +58,14 @@ class LaboratorioCreateView(CreateView):
 class LaboratorioUpdateView(UpdateView):
     def post(self, request, pk):
         laboratory = Laboratorio.objects.get(pk=pk)
-        laboratory.name = request.POST['name']
-        laboratory.acronym = request.POST['acronym']
-        laboratory.description = request.POST['description']
-        laboratory.department = request.POST['department']
+        laboratory.name = request.POST['nome']
+        laboratory.acronym = request.POST['sigla']
+        laboratory.description = request.POST['descricao']
+        laboratory.department = request.POST['departamento']
         laboratory.save()
-        return redirect('laboratories:index')
+        return redirect('templates/laboratorios:index')
 
+class LaboratorioDeleteView(DeleteView):
+    def post(self, request, pk):
+        Laboratorio.objects.get(pk=pk).delete()
+        return redirect('templates/laboratorios:index')
