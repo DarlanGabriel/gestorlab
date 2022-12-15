@@ -12,6 +12,10 @@ from laboratorios import views
 #]
 
 urlpatterns = [
+    path('', views.home, name='laboratorio_home'),
+    path('<slug:laboratorio_slug>/', views.laboratorio_detail, name='laboratorio_detail'),
+    path('list/', views.laboratorio_list, name='laboratorio_list'),
+    path('add/', views.LaboratorioCreateView.as_view(), name='laboratorio_add'),
     path('', views.LaboratorioListView.as_view(), name='list'),
     path('create/', views.LaboratorioCreateView.as_view(), name='create'),
     path('<int:pk>/update/', views.LaboratorioUpdateView.as_view(), name='update'),
